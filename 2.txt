@@ -1,0 +1,138 @@
+local ScreenGui = Instance.new("ScreenGui")
+local RedXGUI = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextLabel_2 = Instance.new("TextLabel")
+local speed = Instance.new("TextButton")
+local btools = Instance.new("TextButton")
+local TextLabel_3 = Instance.new("TextLabel")
+local close = Instance.new("TextButton")
+local TextLabel_4 = Instance.new("TextLabel")
+local open = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+RedXGUI.Name = "RedXGUI"
+RedXGUI.Parent = ScreenGui
+RedXGUI.BackgroundColor3 = Color3.new(9.9, 9, 9)
+RedXGUI.BackgroundColor3 = Color3.new(0.0, 0, 0)
+RedXGUI.BackgroundTransparency = 0.2
+RedXGUI.BorderSizePixel = 4
+RedXGUI.Position = UDim2.new(0.465026885, 0, 0.375590599, 0)
+RedXGUI.Size = UDim2.new(0, 208, 0, 75)
+RedXGUI.Visible = false
+RedXGUI.Active = true
+RedXGUI.Draggable = true
+
+TextLabel.Parent = RedXGUI
+TextLabel.BackgroundColor3 = Color3.new(0, 0, 0)
+TextLabel.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel.BorderSizePixel = 3
+TextLabel.Position = UDim2.new(0.0200752541, 0, -0.005595600, 0)
+TextLabel.Size = UDim2.new(0, 200, 0, 50)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "NOCLIP[V]-SPEAD[X]"
+TextLabel.TextColor3 = Color3.new(9, 9, 9)
+TextLabel.TextSize = 15
+
+speed.Name = "speed"
+speed.Parent = RedXGUI
+speed.BackgroundColor3 = Color3.new(0.0, 0, 0)
+speed.BackgroundTransparency = 0.2
+speed.BorderColor3 = Color3.new(9, 9, 9.)
+speed.BorderSizePixel = 3
+speed.Position = UDim2.new(0.332705882, 0, 0.9, 0)
+speed.Size = UDim2.new(0, 70, 0, 20)
+speed.Font = Enum.Font.Gotham
+speed.Text = "PRES"
+speed.TextColor3 = Color3.new(9, 9, 9)
+speed.TextScaled = true
+speed.TextSize = 5
+speed.TextWrapped = true
+speed.MouseButton1Down:connect(function()
+    local walkspeedplayer = game:GetService("Players").LocalPlayer
+    local walkspeedmouse = walkspeedplayer:GetMouse()
+    
+    local walkspeedenabled = false
+    
+    function x_walkspeed(key)
+        if (key == "x") then
+            if walkspeedenabled == false then
+                _G.WS = 210;
+                local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+                Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+                Humanoid.WalkSpeed = _G.WS;
+                end)
+                Humanoid.WalkSpeed = _G.WS;
+                
+                walkspeedenabled = true
+            elseif walkspeedenabled == true then
+                _G.WS = 21;
+                local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+                Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+                Humanoid.WalkSpeed = _G.WS;
+                end)
+                Humanoid.WalkSpeed = _G.WS;
+                
+                walkspeedenabled = false
+            end
+        end
+    end
+    
+    walkspeedmouse.KeyDown:connect(x_walkspeed)
+    
+end)
+
+close.Name = "close"
+close.Parent = RedXGUI
+close.BackgroundColor3 = Color3.new(0, 0, 0)
+close.BorderSizePixel = 3
+close.Position = UDim2.new(0.893457949, 0, 0.0384615399, 0)
+close.Size = UDim2.new(0, 30, 0, 30)
+close.Font = Enum.Font.SourceSans
+close.Text = "X"
+close.TextColor3 = Color3.new(9, 9, 9)
+close.TextScaled = true
+close.TextSize = 14
+close.TextWrapped = true
+close.MouseButton1Down:connect(function()
+RedXGUI.Visible = false
+open.Visible = true
+end)
+
+noclip = false
+game:GetService('RunService').Stepped:connect(function()
+if noclip then
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end
+end)
+plr = game.Players.LocalPlayer
+mouse = plr:GetMouse()
+mouse.KeyDown:connect(function(key)
+
+if key == "v" then
+noclip = not noclip
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end
+end)
+print('Loaded')
+print('Press "v" to noclip')
+
+open.Name = "oupen"
+open.Parent = ScreenGui
+open.BackgroundColor3 = Color3.new(0.0, 0, 0)
+open.BorderSizePixel = 3
+open.Position = UDim2.new(0.00538047682, 0, 0.412598431, 0)
+open.Size = UDim2.new(0, 50, 0, 50)
+open.Font = Enum.Font.Gotham
+open.Text = "ForBE"
+open.TextColor3 = Color3.new(9, 9, 9)
+open.TextScaled = true
+open.TextSize = 15
+open.TextWrapped = true
+open.MouseButton1Down:connect(function()
+RedXGUI.Visible = true
+open.Visible = false
+end)
